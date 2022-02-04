@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Home Page</title>
+</head>
+<body>
+	<img
+			th:each="files : ${filenames}"
+			th:src="@{*{${#strings.replace(*{files},'src/main/resources/static','')}}}"
+			width="200" height="200" />
+</body>
+</html>
