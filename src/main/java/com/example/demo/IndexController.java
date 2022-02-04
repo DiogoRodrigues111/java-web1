@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import ch.qos.logback.classic.pattern.LineOfCallerConverter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -14,23 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-	public static String LOCATION_PATH_DIR = "src/main/resources/static/";
+	public static final String LOCATION_PATH_DIR = "src/main/resources/static/";
+	public static File listFilesFromPath;
 
 	@NonNull
-	private static Object fileFormater() {
+	private String fileFormater() {
 		File fileObject = new File(LOCATION_PATH_DIR);
 		File[] objectsFiles = fileObject.listFiles();
 
 		for (File _it : objectsFiles) {
-			System.out.println(_it);
+			listFilesFromPath = _it;
+			System.out.println(listFilesFromPath);
 		}
-		
-		return objectsFiles;
+
+		return LOCATION_PATH_DIR;
 	}
 	
 	@RequestMapping("/")
 	public String index(ModelMap map) {
-		map.addAttribute("filenames", fileFormater());
+		map.addAttribute("filenames", fileFormater().replace(LOCATION_PATH_DIR, listFilesFromPath.getName()));
 		return "index";
 	}
 }
