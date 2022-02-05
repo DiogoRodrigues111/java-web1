@@ -15,25 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-	public static final String LOCATION_PATH_DIR = "src/main/resources/static/";
+	public static final String LOCATION_PATH_DIR = "src/main/resources/static";
 	public static File listFilesFromPath;
 
 	@NonNull
-	private String fileFormater() {
+	private static Object fileFormater() throws NullPointerException {
 		File fileObject = new File(LOCATION_PATH_DIR);
 		File[] objectsFiles = fileObject.listFiles();
 
 		for (File _it : objectsFiles) {
 			listFilesFromPath = _it;
 			System.out.println(listFilesFromPath);
+			return listFilesFromPath;
 		}
 
-		return LOCATION_PATH_DIR;
+		String value_repl = LOCATION_PATH_DIR.replace(
+				LOCATION_PATH_DIR, // oldValue
+				listFilesFromPath.getName());
+
+		return value_repl;
 	}
 	
 	@RequestMapping("/")
 	public String index(ModelMap map) {
-		map.addAttribute("filenames", fileFormater().replace(LOCATION_PATH_DIR, listFilesFromPath.getName()));
+		map.addAttribute("filenames", fileFormater());
 		return "index";
 	}
 }
