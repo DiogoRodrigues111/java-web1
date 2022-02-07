@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Repository
 public interface UsersService extends CrudRepository<Users, Long> {
+
     /**
      * Save data's the users.
      *

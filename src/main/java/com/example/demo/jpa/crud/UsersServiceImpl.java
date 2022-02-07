@@ -5,32 +5,78 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Users service, implementation the Services Users.
+ */
 @Service
 public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
 
+    /**
+     * Save data's of the users.
+     *
+     * @param users
+     *  User to save.
+     *
+     * @return
+     *  Save values.
+     */
     @Override
     public Users saveData(Users users) {
-        return null;
+        return usersRepository.save(users);
     }
 
+    /**
+     * Read values the users.
+     *
+     * @return
+     *  Reader values.
+     */
     @Override
     public List<Users> fetchUsers() {
-        return null;
+        return (List<Users>) usersRepository.findAll();
     }
 
+    /**
+     * Update data's of the user.
+     *
+     * @param users
+     *  Users data
+     *
+     * @param id
+     *  Id the Users.
+     *
+     * @return
+     *  Change values, after changes values with your updates.
+     *  Returns save of data's.
+     */
     @Override
     public Users updateData(Users users, Long id) {
-        return null;
+        Users usr = usersRepository.findById(id).get();
+
+        if (Objects.nonNull(users.getFirstName()) && !"".equalsIgnoreCase(users.getFirstName()))
+            usr.setFirstName( users.getFirstName() );
+
+        if (Objects.nonNull(users.getPassword()) && !"".equalsIgnoreCase(users.getPassword()))
+            usr.setPassword(users.getPassword());
+
+        return usersRepository.save( usr );
     }
 
+    /**
+     * Delete user by Id.
+     *
+     * @param id
+     *  Id the user.
+     */
     @Override
     public void deleteData(Long id) {
-
+        usersRepository.deleteById( id );
     }
 
     @Override
