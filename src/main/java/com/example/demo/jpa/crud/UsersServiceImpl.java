@@ -1,8 +1,9 @@
 package com.example.demo.jpa.crud;
 
 import com.example.demo.jpa.Users;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,10 +13,14 @@ import java.util.Optional;
  * Users service, implementation the Services Users.
  */
 @Service
+@RequestMapping
 public class UsersServiceImpl implements UsersRepository {
 
-    @Autowired
     private UsersRepository usersRepository;
+
+    public UsersServiceImpl(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
     /**
      * Save data's of the users.
@@ -28,7 +33,7 @@ public class UsersServiceImpl implements UsersRepository {
      */
     @Override
     public Users saveData(Users users) {
-        return usersRepository.save(users);
+        return usersRepository.saveData(users);
     }
 
     /**
@@ -65,7 +70,7 @@ public class UsersServiceImpl implements UsersRepository {
         if (Objects.nonNull(users.getPassword()) && !"".equalsIgnoreCase(users.getPassword()))
             usr.setPassword(users.getPassword());
 
-        return usersRepository.save( usr );
+        return usersRepository.saveData( usr );
     }
 
     /**

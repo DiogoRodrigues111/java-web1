@@ -4,6 +4,9 @@ import com.example.demo.jpa.Users;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**
+ * JPA Test's
+ */
 @SpringBootTest
 public class UsersControllerTest {
 
@@ -12,7 +15,5 @@ public class UsersControllerTest {
     @Test
     void assertForInsertValues(Users controller) {
         user.saveUser(controller);
-        System.out.println(user.toString());
-        assert(user == null);
     }
 }
