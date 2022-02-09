@@ -13,7 +13,7 @@ import java.util.List;
 public class UsersController {
 
     @Autowired
-    private UsersService usersService;
+    private UsersRepository usersRepository;
 
     /**
      * Save user data values.
@@ -25,7 +25,7 @@ public class UsersController {
      */
     @PostMapping("/users")
     public Users saveUser(@RequestBody Users users) {
-        return usersService.saveData(users);
+        return usersRepository.saveData(users);
     }
 
     /**
@@ -36,7 +36,7 @@ public class UsersController {
      */
     @GetMapping("/users")
     public List<Users> fetchUser() {
-        return usersService.fetchUsers();
+        return usersRepository.fetchUsers();
     }
 
     /**
@@ -56,7 +56,7 @@ public class UsersController {
             @RequestBody Users users
             , @PathVariable("id") Long id
     ) {
-        return usersService.updateData(users, id);
+        return usersRepository.updateData(users, id);
     }
 
     /**
@@ -70,7 +70,7 @@ public class UsersController {
      */
     @DeleteMapping("/users/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
-        usersService.deleteById(id);
+        usersRepository.deleteById(id);
         return "User DELETED with success";
     }
 }

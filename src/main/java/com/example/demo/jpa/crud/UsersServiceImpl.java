@@ -12,7 +12,7 @@ import java.util.Optional;
  * Users service, implementation the Services Users.
  */
 @Service
-public class UsersServiceImpl implements UsersService {
+public class UsersServiceImpl implements UsersRepository {
 
     @Autowired
     private UsersRepository usersRepository;
@@ -78,6 +78,8 @@ public class UsersServiceImpl implements UsersService {
     public void deleteData(Long id) {
         usersRepository.deleteById( id );
     }
+
+    //** Overrides not implemented ** .
 
     @Override
     public <S extends Users> S save(S entity) {

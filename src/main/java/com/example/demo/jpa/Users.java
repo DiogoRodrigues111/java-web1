@@ -3,7 +3,7 @@ package com.example.demo.jpa;
 import javax.persistence.*;
 
 /**
- * Spring Data JPA with MS SQL Server.
+ * Spring Data JPA with MariaDB - MySQL.
  *
  * Users table for sign-in.
  */
