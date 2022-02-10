@@ -1,6 +1,5 @@
-package com.example.demo.jpa.crud;
+package com.example.demo.jpa.entity;
 
-import com.example.demo.jpa.Users;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
