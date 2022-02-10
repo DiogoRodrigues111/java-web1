@@ -23,8 +23,16 @@ public class IndexController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(path = "/", method = RequestMethod.POST)
-	public String writeIndexParams(
+	/**
+	 * Sign In from page HTML.
+	 * 
+	 * @param nome
+	 * @param email
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(path = "/signin", method = RequestMethod.POST)
+	public String writeSignInParams(
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
 			, User user )
@@ -34,7 +42,17 @@ public class IndexController {
 		
 		userService.saveUsrData(user);
 		
-		return "index";
+		return "signin";
+	}
+	
+	/**
+	 * Sign In page of the HTML.
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/signin")
+	public String signin() {
+		return "signin";
 	}
 	
 	/**
