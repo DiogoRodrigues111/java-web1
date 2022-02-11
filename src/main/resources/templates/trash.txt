@@ -1,1 +1,32 @@
 <img th:each="files : ${FILE_NAME}" th:src="${files}" width="200" height="200" />
+
+
+.btn-header1-signin {
+	/*position: fixed;
+	left: 80%;
+	*/
+}
+
+.btn-home-header-1 {
+	/*position: fixed;
+	left: 20px;
+	*/
+}
+
+.btn-header1-signup {
+	/*position: fixed;
+	left: 860px;
+	*/
+}
+
+.btn-signin-sucess {
+	/*position: fixed;
+	left: 70%;
+	*/
+}
+
+.btn-uploaded-screen {
+	/*position: fixed;
+	left: 72%;
+	*/
+}

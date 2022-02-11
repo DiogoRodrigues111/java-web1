@@ -7,19 +7,9 @@ body {
 	background-color: rgb(214, 227, 245);
 }
 
-.btn-header1 {
-	position: relative;
-	margin-left: 70%;
-}
-
-.btn-home-header-1 {
-	position: relative;
-	margin-left: 20px;
-}
-
-.btn-signup {
-	position: relative;
-	margin-left: 1%;
+.container-header {
+	position: fixed;
+	left: 72%;
 }
 
 .welcome {
@@ -30,11 +20,6 @@ body {
 .doing-make-h3 {
 	position: relative;
 	margin-left: 30%;
-}
-
-.btn-signin-sucess {
-	position: relative;
-	margin-left: 70%;
 }
 
 .img-center-user {
