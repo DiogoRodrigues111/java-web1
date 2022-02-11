@@ -9,7 +9,7 @@ body {
 
 .btn-header1 {
 	position: relative;
-	margin-left: 50%;
+	margin-left: 70%;
 }
 
 .btn-home-header-1 {
@@ -27,7 +27,27 @@ body {
 	margin-left: 40%;
 }
 
-.doing-make {
+.doing-make-h3 {
 	position: relative;
 	margin-left: 30%;
+}
+
+.btn-signin-sucess {
+	position: relative;
+	margin-left: 70%;
+}
+
+.img-center-user {
+	position: relative;
+	margin: 30px;
+}
+
+.login-page-center {
+	position: relative !important;
+	margin-left: 35% !important;
+}
+
+.login-page-img-center {
+	position: relative;
+	margin-left: 38% !important;
 }

@@ -17,40 +17,43 @@
 		<a href="signin"><button class="btn btn-primary btn-signup" type="submit">SignUp</button></a>
 	</header>
 	
-	<h1 class="welcome">Welcome</h1>
-	<h3 class="doing-make">You can login here below.</h3>
-	<br>
-	<form action="/" method="get">
-		<div class="container">
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="basic-addon1">Nickname</span>
-				<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+	<h1 class="login-page-img-center">Welcome</h1>
+	<h3 class="login-page-img-center">You can login here below.</h3>
+	<div class="container login-page-center input-group mb-3">
+		<form action="/" method="get">
+			<div class="container">
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="basic-addon1">Nickname</span>
+					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group mb-3">
+				  <input type="email" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+				  <span class="input-group-text" id="basic-addon2">@example.com</span>
+				</div>
+				<div class="input-group mb-3">
+					<button class="btn btn-outline-secondary btn-success text-light" type="submit" id="button-addon2">Log-In</button>
+				</div>
 			</div>
-			<div class="input-group mb-3">
-			  <input type="text" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
-			  <span class="input-group-text" id="basic-addon2">@example.com</span>
+		</form>
+	</div>
+	<h3 class="login-page-img-center">You can register to new user.</h3>
+	<div class="container login-page-center input-group mb-3">
+		<form action="/" method="post">
+			<div class="container">
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="basic-addon1">Full name</span>
+					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group mb-3">
+				  <input type="email" class="form-control" placeholder="youremail@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+				  <span class="input-group-text" id="basic-addon2">@example.com</span>
+				</div>
+				<div class="input-group mb-3">
+					<button class="btn btn-primary" type="submit" id="button-addon2">Register</button>
+				</div>
 			</div>
-			<div class="input-group mb-3">
-				<button class="btn btn-outline-secondary btn-success text-light" type="submit" id="button-addon2">Log-In</button>
-			</div>
-		</div>
-	</form>
-	<h3 class="doing-make">You can register to new user.</h3>
-	<form action="/" method="post">
-		<div class="container">
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="basic-addon1">Full name</span>
-				<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-			</div>
-			<div class="input-group mb-3">
-			  <input type="text" class="form-control" placeholder="newuser@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
-			  <span class="input-group-text" id="basic-addon2">@example.com</span>
-			</div>
-			<div class="input-group mb-3">
-				<button class="btn btn-primary" type="submit" id="button-addon2">Register</button>
-			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 	
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>

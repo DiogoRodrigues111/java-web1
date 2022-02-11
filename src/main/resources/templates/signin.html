@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sign In</title>
+	<title>Sign In</title>
+
+	<link rel="stylesheet" type="text/css" href="site.css" media="screen">
+	
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-	<div>
-		<form action="/signin" method="post">
-			<label>First name</label> 
-			<input type="text" name="nome" width="100" height="50" /> 
-			<label>email</label> 
-			<input type="email" name="email" width="100" height="50" />
-			<input type="submit" value="submit to server" />
-		</form>
+	<header class="header-div">
+		<a><img src="uploaded/bg-gradient.jpg" width="40" height="40"></a>
+		<a class="btn" href="/">Home</a>
+		<a href="signin"><button class="btn btn-primary btn-signup btn-signin-sucess" type="submit">SignUp</button></a>
+	</header>
+	<div class="container login-page-img-center input-group mb-3">
+		<img class="img-center-user" src="uploaded/VmZHnTO.jpg" width="200" height="200">
 	</div>
+	<div class="container login-page-center input-group mb-3">
+		<form action="/" method="get">
+		<div class="container">
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Nickname</span>
+				<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group mb-3">
+			  <input type="email" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+			  <span class="input-group-text" id="basic-addon2">@example.com</span>
+			</div>
+			<div class="input-group mb-3">
+				<button class="btn btn-outline-secondary btn-success text-light" type="submit" id="button-addon2">Log-In</button>
+			</div>
+		</div>
+	</form>
+	</div>
+	
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
