@@ -12,9 +12,45 @@
 <body>
 	<header class="header-div">
 		<a><img src="uploaded/bg-gradient.jpg" width="40" height="40"></a>
-		<a href="/">Home</a>
-		<a class="signin_align" href="signin">SignIn</a>
+		<a class="btn" href="/">Home</a>
+		<a href="signin"><button class="btn btn-primary btn-header1" type="submit">SignIn</button></a>
+		<a href="signin"><button class="btn btn-primary btn-signup" type="submit">SignUp</button></a>
 	</header>
+	
+	<h1 class="welcome">Welcome</h1>
+	<h3 class="doing-make">You can login here below.</h3>
+	<br>
+	<form action="/" method="get">
+		<div class="container">
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Nickname</span>
+				<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group mb-3">
+			  <input type="text" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+			  <span class="input-group-text" id="basic-addon2">@example.com</span>
+			</div>
+			<div class="input-group mb-3">
+				<button class="btn btn-outline-secondary btn-success text-light" type="submit" id="button-addon2">Log-In</button>
+			</div>
+		</div>
+	</form>
+	<h3 class="doing-make">You can register to new user.</h3>
+	<form action="/" method="post">
+		<div class="container">
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">Full name</span>
+				<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group mb-3">
+			  <input type="text" class="form-control" placeholder="newuser@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+			  <span class="input-group-text" id="basic-addon2">@example.com</span>
+			</div>
+			<div class="input-group mb-3">
+				<button class="btn btn-primary" type="submit" id="button-addon2">Register</button>
+			</div>
+		</div>
+	</form>
 	
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>

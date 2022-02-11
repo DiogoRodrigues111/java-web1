@@ -1,9 +1,33 @@
-.header-div {
-	background-color: rgb(214, 227, 245);
-	border-radius: 2%;
+body {
+	margin: auto;
 }
 
-.signin_align {
-	padding-left: 50%;
-	height: 30%;
+.header-div {
+	position: relative;
+	background-color: rgb(214, 227, 245);
+}
+
+.btn-header1 {
+	position: relative;
+	margin-left: 50%;
+}
+
+.btn-home-header-1 {
+	position: relative;
+	margin-left: 20px;
+}
+
+.btn-signup {
+	position: relative;
+	margin-left: 1%;
+}
+
+.welcome {
+	position: relative;
+	margin-left: 40%;
+}
+
+.doing-make {
+	position: relative;
+	margin-left: 30%;
 }
