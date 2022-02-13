@@ -35,7 +35,7 @@ public class IndexController {
 	public String writeSignInParams(
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
-			, User user )
+			, User user)
 	{		
 		user.setUserName(nome);
 		user.setEmail(email);
