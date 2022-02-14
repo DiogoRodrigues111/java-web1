@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Sign In</title>
 
@@ -15,21 +15,21 @@
 		<span class="container container-header">
 			<a href="uploaded"><input class="btn btn-success" type="button" value="Upload" /></a>
 			<a href="signin"><button class="btn btn-primary" type="submit">SignIn</button></a>
-			<a href="signin"><button class="btn btn-primary" type="submit">SignUp</button></a>
+			<a href="/"><button class="btn btn-primary" type="submit">SignUp</button></a>
 		</span>
 	</header>
 	<div class="container login-page-img-center input-group mb-3">
 		<img class="img-center-user" src="uploaded/VmZHnTO.jpg" width="200" height="200">
 	</div>
 	<div class="container login-page-center input-group mb-3">
-		<form action="/" method="get">
+		<form action="signin" method="get">
 			<div class="container">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">Nickname</span>
-					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+					<input name="nome" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 				</div>
 				<div class="input-group mb-3">
-				  <input type="email" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+				  <input name="email" type="email" class="form-control" placeholder="example@provider.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
 				  <span class="input-group-text" id="basic-addon2">@example.com</span>
 				</div>
 				<div class="input-group mb-3">

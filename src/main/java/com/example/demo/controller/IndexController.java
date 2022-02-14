@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import java.io.File;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +22,7 @@ public class IndexController {
 	private UserService userService;
 	
 	/**
-	 * Sign In from page HTML.
+	 * Register from page HTML.
 	 * 
 	 * @param nome
 	 * @param email
@@ -32,6 +30,7 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(path = "/signin", method = RequestMethod.POST)
+	@GetMapping("/")
 	public String writeSignInParams(
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
@@ -43,6 +42,23 @@ public class IndexController {
 		userService.saveUsrData(user);
 		
 		return "signin";
+	}
+	
+	@RequestMapping(path = "/loginsuccess", method = RequestMethod.GET)
+	@GetMapping("/signin")
+	public String loginSignInPage(
+			  @RequestParam("nome")  String nome
+			, @RequestParam("email") String email
+			, User user)
+	{		
+		String name = user.getUserName();
+		String e_mail = user.getEmail();
+		
+		if (nome.equals(name) && email.equals(e_mail)) {
+			return "redirect:/loginsuccess";
+		}
+		
+		return "loginsuccess";
 	}
 	
 	/**
@@ -63,8 +79,12 @@ public class IndexController {
 	 */
 	@RequestMapping("/")
 	public String index() {
-
 		return "index";
+	}
+	
+	@RequestMapping("/loginsuccess")
+	public String loginsuccess() {
+		return "loginsuccess";
 	}
 
 }
