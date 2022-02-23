@@ -35,7 +35,7 @@ public class IndexController {
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
 			, User user)
-	{		
+	{
 		user.setUserName(nome);
 		user.setEmail(email);
 		
@@ -44,13 +44,21 @@ public class IndexController {
 		return "signin";
 	}
 	
+	/**
+	 * Login page from html page.
+	 * 
+	 * @param nome
+	 * @param email
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(path = "/loginsuccess", method = RequestMethod.GET)
 	@GetMapping("/signin")
 	public String loginSignInPage(
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
 			, User user)
-	{		
+	{
 		String name = user.getUserName();
 		String e_mail = user.getEmail();
 		
@@ -60,6 +68,8 @@ public class IndexController {
 		
 		return "loginsuccess";
 	}
+	
+	/* Controller pages below */
 	
 	/**
 	 * Sign In page of the HTML.
@@ -85,6 +95,11 @@ public class IndexController {
 	@RequestMapping("/loginsuccess")
 	public String loginsuccess() {
 		return "loginsuccess";
+	}
+	
+	@RequestMapping("/indexpage")
+	public String indexPage() {
+		return "indexpage";
 	}
 
 }

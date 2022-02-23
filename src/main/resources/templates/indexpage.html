@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ecommerce</title>
+</head>
+<body>
+	<img th:each="files : ${foreach_fs}" th:insert="${files}" src="@{files}">
+</body>
+</html>

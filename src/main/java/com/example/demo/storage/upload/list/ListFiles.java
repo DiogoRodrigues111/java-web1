@@ -1,11 +1,18 @@
 package com.example.demo.storage.upload.list;
 
 import org.springframework.lang.NonNull;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
+//import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import lombok.Builder;
+import lombok.Getter;
 
 import java.io.File;
 
-public class FileForeach {
+@Getter
+@Builder
+public class ListFiles {
 
     /**
      * Location of the static folder path, it's contains all file supported for website app.
@@ -17,6 +24,25 @@ public class FileForeach {
      */
     public static File listFilesFromPath;
 
+	/* Getters and Setters */
+	
+    /**
+     * Get file name with path.
+     */
+	public String fileNames;
+    
+	public ListFiles(String fileNames) {
+		this.fileNames = fileNames;
+	}
+
+	public String getFileNames() {
+		return fileNames;
+	}
+
+	public void setFileNames(String fileNames) {
+		this.fileNames = fileNames;
+	}
+    
     /**
      * Get file formats from an iterator, and show in @see ModelMap.
      *
@@ -26,14 +52,17 @@ public class FileForeach {
      * 	Take it for null pointer exception, in iterator of the files.
      */
     @NonNull
-    public void foreach(ModelMap map) throws NullPointerException {
+    @GetMapping("/indexpage")
+    public String foreach(Model map) throws NullPointerException {
         File fileObject = new File(LOCATION_PATH_DIR);
         File[] objectsFiles = fileObject.listFiles();
 
         for (File _it : objectsFiles) {
-            map.addAttribute("FILE_NAME", replaceValue(_it));
-            System.out.println(_it);
+            map.addAttribute("foreach_fs", replaceValue(_it));
+            System.out.println( _it );
         }
+        
+        return "indexpage";
     }
 
     /**
