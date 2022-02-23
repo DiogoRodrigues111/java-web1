@@ -1,12 +1,9 @@
 package com.example.demo.upload;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Upload Sequence routine.
@@ -20,7 +17,7 @@ public class UploadSequenceFiles extends FilesUpload {
 		
 	}
 	
-	public UploadSequenceFiles(String dir, File file) {
+	public UploadSequenceFiles(String dir, MultipartFile file) {
 		setPathDirectory(dir);
 		setFileToUpload(file);
 	}
@@ -38,23 +35,22 @@ public class UploadSequenceFiles extends FilesUpload {
 	 * @return
 	 * 	always false.
 	 */
-	public boolean createFileSystem(String dir) {
+	public boolean createFileSystem(String dir, String file) {
+		
 		/* Create file on file system. */
 		try {
-			FileWriter fs = new FileWriter(new File(dir + getFileToUpload()));
-			Files.createFile(Paths.get(new URI(getFileToUpload().getName())));
+			byte buffer[] = getFileToUpload().getBytes();
+			
+			FileOutputStream fos = new FileOutputStream(dir + file);
+			fos.write( buffer );
 			
 			// check if success or failed.
-			System.out.printf("Failed to create file system with -1 in file system returns : %s", ( fs == null ));
-			System.out.printf("Create file system with 0 in file system returns : %s", ( fs != null ));
+			System.out.printf("File created with 0 in file system returns : %s \n", ( fos != null ));
 			
-			fs.close();
+			fos.close();
 		}
 		catch(IOException file_ex) {
 			file_ex.printStackTrace();
-		}
-		catch(URISyntaxException uri_ex) {
-			uri_ex.printStackTrace();
 		}
 		
 		return false;

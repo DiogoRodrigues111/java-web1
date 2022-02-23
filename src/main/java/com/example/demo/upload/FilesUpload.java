@@ -1,12 +1,12 @@
 package com.example.demo.upload;
 
-import java.io.File;
+import org.springframework.web.multipart.MultipartFile;
 
 public class FilesUpload {
 
 	private String PathDirectory;
 	
-	private File FileToUpload;
+	private MultipartFile FileToUpload;
 
 	/**
 	 * @return the pathDirectory
@@ -25,14 +25,14 @@ public class FilesUpload {
 	/**
 	 * @return the fileToUpload
 	 */
-	public File getFileToUpload() {
+	public MultipartFile getFileToUpload() {
 		return FileToUpload;
 	}
 
 	/**
 	 * @param fileToUpload the fileToUpload to set
 	 */
-	public void setFileToUpload(File fileToUpload) {
+	public void setFileToUpload(MultipartFile fileToUpload) {
 		FileToUpload = fileToUpload;
 	}
 	

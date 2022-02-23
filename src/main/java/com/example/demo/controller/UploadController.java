@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.io.File;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +16,7 @@ public class UploadController {
 	FilesUpload uploadFS;
 	
 	public static final String _LOCATION_FILE_FOR_UPLOAD
-		= "/src/main/resources/static/uploaded/";
+		= "src/main/resources/static/uploaded/";
 	
 	@RequestMapping(path = "/upload", method = RequestMethod.POST)
 	public String uploadFile(
@@ -29,8 +26,8 @@ public class UploadController {
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
 		
 		for (MultipartFile fi : file) {
-			uploadFiles = new UploadSequenceFiles(_LOCATION_FILE_FOR_UPLOAD, (File)fi);
-			uploadFiles.createFileSystem(_LOCATION_FILE_FOR_UPLOAD + fi.getOriginalFilename());
+			uploadFiles = new UploadSequenceFiles(uploadFS.getPathDirectory(), fi);
+			uploadFiles.createFileSystem(uploadFS.getPathDirectory(), fi.getOriginalFilename());
 		}
 		
 		return "upload";
