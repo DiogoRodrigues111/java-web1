@@ -5,6 +5,8 @@
 <title>Ecommerce</title>
 </head>
 <body>
-	<img th:each="files : ${foreach_fs}" th:insert="${files}" src="@{files}">
+	<video th:name="video_found" width="200" height="200">
+		<source th:each="found : ${video_found}" src="*{found}">
+	</video>
 </body>
 </html>

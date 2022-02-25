@@ -33,7 +33,6 @@ public class UploadController {
 		return "upload";
 	}
 	
-	
 	@RequestMapping("/upload")
 	public String upload() {
 		return "upload";

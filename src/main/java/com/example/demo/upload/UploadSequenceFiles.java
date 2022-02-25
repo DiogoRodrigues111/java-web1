@@ -17,6 +17,15 @@ public class UploadSequenceFiles extends FilesUpload {
 		
 	}
 	
+	/**
+	 * Instance for Upload Files.
+	 * 
+	 * @param dir
+	 * 	Parameter mandatory.
+	 * 
+	 * @param file
+	 * 	Parameter mandatory.
+	 */
 	public UploadSequenceFiles(String dir, MultipartFile file) {
 		setPathDirectory(dir);
 		setFileToUpload(file);

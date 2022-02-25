@@ -96,10 +96,5 @@ public class IndexController {
 	public String loginsuccess() {
 		return "loginsuccess";
 	}
-	
-	@RequestMapping("/indexpage")
-	public String indexPage() {
-		return "indexpage";
-	}
 
 }
