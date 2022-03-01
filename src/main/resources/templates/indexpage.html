@@ -5,8 +5,10 @@
 <title>Ecommerce</title>
 </head>
 <body>
-	<video th:name="video_found" width="200" height="200">
-		<source th:each="found : ${video_found}" src="*{found}">
-	</video>
+	<!--<img th:each="files : ${#lists.containsAll('uploaded', '')}" th:src="*{files}"> -->
+	<form action="indexpage" method="post">
+		<input name="getfile" type="text" width="100" height="50" />
+		<input type="submit" value="Savar" />
+	</form>
 </body>
 </html>
