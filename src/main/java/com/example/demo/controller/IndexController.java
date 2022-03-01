@@ -45,7 +45,7 @@ public class IndexController {
 	}
 	
 	/**
-	 * Login page from html page.
+	 * Login page from HTML page.
 	 * 
 	 * @param nome
 	 * @param email
@@ -85,7 +85,7 @@ public class IndexController {
 	 * Index page of the HTML.
 	 *
 	 * @return
-	 * 	Page html.
+	 * 	Page HTML.
 	 */
 	@RequestMapping("/")
 	public String index() {
