@@ -2,9 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Ecommerce</title>
+	<title>Night Videos - Home Page</title>
+	
+	<link rel="stylesheet" type="text/css" href="site.css" media="screen">
 </head>
 <body>
-	<img th:each="files : ${filesIt}" th:src="${files}">
+	<img class="rounded-image-indexpage" width="200" height="200" th:each="files : ${filesIt}" th:src="${files}">
+	<video class="rounded-image-indexpage" width="200" height="200" loop controls>
+		<source th:each="files : ${filesIt}" th:src="${files}" type="video/*,audio/*">
+	</video>
 </body>
 </html>

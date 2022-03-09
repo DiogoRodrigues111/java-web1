@@ -20,14 +20,17 @@ public class UploadController {
 	
 	@RequestMapping(path = "/upload", method = RequestMethod.POST)
 	public String uploadFile(
-			@RequestParam("file") MultipartFile[] file) {
+			  @RequestParam("file") MultipartFile[] file
+			, @RequestParam("nameText") String nameFile) {
 		
 		uploadFS = new FilesUpload();
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
 		
 		for (MultipartFile fi : file) {
+			String extension = fi.getContentType().replace("video/", ".");
+			
 			uploadFiles = new UploadSequenceFiles(uploadFS.getPathDirectory(), fi);
-			uploadFiles.createFileSystem(uploadFS.getPathDirectory(), fi.getOriginalFilename());
+			uploadFiles.createFileSystem(uploadFS.getPathDirectory(), ( nameFile + extension ));
 		}
 		
 		return "upload";
