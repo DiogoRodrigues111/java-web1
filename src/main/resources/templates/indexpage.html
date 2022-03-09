@@ -5,6 +5,6 @@
 <title>Ecommerce</title>
 </head>
 <body>
-	<!--<img th:each="files : ${#lists.containsAll('uploaded', '')}" th:src="*{files}"> -->
+	<img th:each="files : ${filesIt}" th:src="${files}">
 </body>
 </html>
