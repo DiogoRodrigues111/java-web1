@@ -20,6 +20,7 @@ public class FileDownloader extends FileSelector {
 	 * @throws IOException
 	 */
 	public void checkURL(URL url, File dst) throws IOException {
+		
 		if (url == null)
 			throw new RuntimeException("Values not be null, Url null.");
 		

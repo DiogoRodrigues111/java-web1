@@ -7,9 +7,17 @@
 	<link rel="stylesheet" type="text/css" href="site.css" media="screen">
 </head>
 <body>
-	<img class="rounded-image-indexpage" width="200" height="200" th:each="files : ${filesIt}" th:src="${files}">
-	<video class="rounded-image-indexpage" width="200" height="200" loop controls>
-		<source th:each="files : ${filesIt}" th:src="${files}" type="video/*,audio/*">
-	</video>
+	<div th:each="img : ${images}">
+		<img class="rounded-image-indexpage" width="200" height="200" th:src="${img}">
+	</div>
+	<div th:each="vid : ${videos}">
+		<video class="rounded-image-indexpage" width="200" height="200" loop controls>
+			<source th:src="${vid}" type="video/mp4">
+		</video>
+		
+		<video class="rounded-image-indexpage" width="200" height="200" loop controls>
+			<source th:src="${vid}" type="video/mp4">
+		</video>
+	</div>
 </body>
 </html>

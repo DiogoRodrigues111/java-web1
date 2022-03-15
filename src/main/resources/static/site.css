@@ -38,17 +38,11 @@ body {
 }
 
 /* indexpage */
+
 .rounded-image-indexpage {
-	position: relative !important;
+	position: relative;
 	margin-left: 30% !important;
 	border-radius: 5px;
 }
 
 /* uploads */
-.upload-buttons {
-	
-}
-
-.upload-text {
-	
-}
