@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.controller.login.StaticLogin;
 import com.example.demo.jpa.entity.User;
 import com.example.demo.jpa.services.UserService;
 
@@ -41,43 +42,6 @@ public class IndexController {
 		
 		userService.saveUsrData(user);
 		
-		return "signin";
-	}
-	
-	/**
-	 * Login page from HTML page.
-	 * 
-	 * @param nome
-	 * @param email
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping(path = "/loginsuccess", method = RequestMethod.GET)
-	@GetMapping("/signin")
-	public String loginSignInPage(
-			  @RequestParam("nome")  String nome
-			, @RequestParam("email") String email
-			, User user)
-	{
-		String name = user.getUserName();
-		String e_mail = user.getEmail();
-		
-		if (nome.equals(name) && email.equals(e_mail)) {
-			return "redirect:/loginsuccess";
-		}
-		
-		return "loginsuccess";
-	}
-	
-	/* Controller pages below */
-	
-	/**
-	 * Sign In page of the HTML.
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/signin")
-	public String signin() {
 		return "signin";
 	}
 	

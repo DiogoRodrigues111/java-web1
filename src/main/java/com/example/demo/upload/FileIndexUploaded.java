@@ -3,12 +3,44 @@ package com.example.demo.upload;
 import java.io.File;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 public class FileIndexUploaded {
 	
 	public static final String _ORIGINAL_LOCATION
 		= "src/main/resources/static/uploaded/";
 	
+	/**
+	 * Getter and Setters Files 
+	 * 
+	 * @see {@link FileIndexUploaded}
+	 */
+	public File[] Files;
+
+	public File[] getFiles() {
+		return Files;
+	}
+
+	public void setFiles(File[] files) {
+		Files = files;
+	}
+
+	/**
+	 * Getter and Setters Files 
+	 * 
+	 * @see {@link FileIndexUploaded}
+	 */
+	public File PathFileVar;
+
+	public File getPathFileVar() {
+		return PathFileVar;
+	}
+
+	public void setPathFileVar(File pathFileVar) {
+		PathFileVar = pathFileVar;
+	}
+
 	/**
 	 * Function for shake in html.
 	 * 
@@ -24,22 +56,25 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the html.
 	 */
-	public String UploadedValid(String pathValid, Model model) {
+	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
+	public File[] UploadedValid(String pathValid, Model model) {
 		File file = new File(pathValid);
-		File files[] = file.listFiles();
+		File[] files = file.listFiles();
 		
-		for (File it : files) {
-			
+		setFiles( files );
+		setPathFileVar( file );
+		
+		for (File it : getFiles()) {
 			// replace originals values for new values.
-			String replaceIt = pathValid.replace(_ORIGINAL_LOCATION, "uploaded/" + it.getName());
+			//String rplPath = pathValid.replace(_ORIGINAL_LOCATION, "uploaded/" + getCbFile().getName());
 			
 			// make it in html page.
-			model.addAttribute("filesIt", replaceIt);
+			model.addAttribute("filesIt", getFiles());
 			
 			// only check it for me.
 			System.out.println("Checking file is valid: " + it);
 		}
-		
-		return "indexpage";
+
+		return files;
 	}
 }

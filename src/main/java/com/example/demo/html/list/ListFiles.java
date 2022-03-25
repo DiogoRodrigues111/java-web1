@@ -2,8 +2,8 @@ package com.example.demo.html.list;
 
 import java.io.File;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import com.example.demo.annotation.DontUse;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class ListFiles extends FileLoaded {
@@ -16,7 +16,8 @@ public class ListFiles extends FileLoaded {
 		setFileUploaded(file);
 	}
 	
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
+	//@RequestMapping(path = "/indexpage")
+	@DontUse
 	public String makeFile() {
 		
 		File file = new File(_LOCATION_FILE_FOR_UPLOAD);

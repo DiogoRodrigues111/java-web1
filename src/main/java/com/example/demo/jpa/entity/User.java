@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Data
 @Builder
@@ -21,7 +23,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    private String userName;
+	@Autowired
+    public String userName;
 
     public String getUserName() {
 		return userName;
@@ -31,6 +34,9 @@ public class User {
 		this.userName = userName;
 	}
 
+	@Autowired
+	public String email;
+
 	public String getEmail() {
 		return email;
 	}
@@ -38,6 +44,4 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	private String email;
 }

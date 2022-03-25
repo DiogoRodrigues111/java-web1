@@ -29,7 +29,7 @@ public class IndexPageController {
 		return listFiles.getFileUploaded();
 	}
 	
-	@RequestMapping(path = "indexpage", method = RequestMethod.GET)
+	@RequestMapping(path = "/indexpage", method = RequestMethod.GET)
 	public String fileUploadedList(Model model) {
 		
 		uploadList = new FileIndexUploaded();

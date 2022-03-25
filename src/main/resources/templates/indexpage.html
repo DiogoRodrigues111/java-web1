@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-	<title>Night Videos - Home Page</title>
-	
+	<meta charset="ISO-8859-1">
+	<title>Cxz Videos - Home Page</title>
 	<link rel="stylesheet" type="text/css" href="site.css" media="screen">
 </head>
 <body>
-	<img class="rounded-image-indexpage" width="200" height="200" th:each="files : ${filesIt}" th:src="${files}">
-	<video class="rounded-image-indexpage" width="200" height="200" loop controls>
-		<source th:each="files : ${filesIt}" th:src="${files}" type="video/*,audio/*">
-	</video>
+	<div th:each="files : ${filesIt}">
+		<a th:href="'uploaded/'+*{files.name}">
+			<img class="rounded-image-indexpage" width="200" height="200" th:src="'uploaded/'+*{files.name}">
+			<video class="rounded-image-indexpage" width="200" height="200" controls loop>
+				<source th:src="'uploaded/'+*{files.name}" type="video/mp4">
+			</video>
+		</a>
+	</div>
 </body>
 </html>
