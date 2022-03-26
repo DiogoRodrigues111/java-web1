@@ -31,14 +31,26 @@ public class FileIndexUploaded {
 	 * 
 	 * @see {@link FileIndexUploaded}
 	 */
-	public File PathFileVar;
+	public File[] CheckFileIfVideos;
+	
 
-	public File getPathFileVar() {
-		return PathFileVar;
+	public File[] getCheckFileIfVideos() {
+		return CheckFileIfVideos;
 	}
 
-	public void setPathFileVar(File pathFileVar) {
-		PathFileVar = pathFileVar;
+	public void setCheckFileIfVideos(File[] checkFileIfVideos) {
+		CheckFileIfVideos = checkFileIfVideos;
+	}
+
+	public File[] CheckFIleIfImages;
+	
+
+	public File[] getCheckFIleIfImages() {
+		return CheckFIleIfImages;
+	}
+
+	public void setCheckFIleIfImages(File[] checkFIleIfImages) {
+		CheckFIleIfImages = checkFIleIfImages;
 	}
 
 	/**
@@ -58,21 +70,40 @@ public class FileIndexUploaded {
 	 */
 	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
 	public File[] UploadedValid(String pathValid, Model model) {
+
 		File file = new File(pathValid);
 		File[] files = file.listFiles();
 		
-		setFiles( files );
-		setPathFileVar( file );
-		
-		for (File it : getFiles()) {
-			// replace originals values for new values.
-			//String rplPath = pathValid.replace(_ORIGINAL_LOCATION, "uploaded/" + getCbFile().getName());
+		// check all files for iterator found all.
+		setCheckFIleIfImages( files );
+		setCheckFileIfVideos( files );
+
+		// select images div.
+		for (File it : getCheckFIleIfImages()) {
 			
-			// make it in html page.
-			model.addAttribute("filesIt", getFiles());
+			boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
+										 || it.getName().endsWith(".png") 
+										 || it.getName().endsWith(".jpeg") 
+										 || it.getName().endsWith(".webp")
+									);
+					
+			if (!terminateWithImage) {
+				// make it in html page.
+				model.addAttribute("filesItImages", getCheckFIleIfImages());
+			}
+		}
+
+		// select videos div.
+		for (File it : getCheckFileIfVideos()) {
+
+			boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
+										||  it.getName().endsWith(".webm") 
+											);
 			
-			// only check it for me.
-			System.out.println("Checking file is valid: " + it);
+			if (!terminateWithVideo) {
+				// make it in html page.
+				model.addAttribute("filesItVideos", getCheckFileIfVideos());
+			}								
 		}
 
 		return files;

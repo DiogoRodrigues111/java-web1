@@ -27,13 +27,14 @@ public class UploadController {
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
 		
 		for (MultipartFile fi : file) {
-			String extension = fi.getContentType().replace("video/", ".");
+			String extension = fi.getContentType()
+				.replace("/", "").replace("image", ".").replace("video", ".");
 			
 			uploadFiles = new UploadSequenceFiles(uploadFS.getPathDirectory(), fi);
 			uploadFiles.createFileSystem(uploadFS.getPathDirectory(), ( nameFile + extension ));
 		}
 		
-		return "upload";
+		return "redirect:/indexpage";
 	}
 	
 	@RequestMapping("/upload")
