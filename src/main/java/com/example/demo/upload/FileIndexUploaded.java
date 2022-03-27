@@ -1,6 +1,9 @@
 package com.example.demo.upload;
 
 import java.io.File;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -71,6 +74,25 @@ public class FileIndexUploaded {
 	}
 
 	/**
+	 * Universal iterator
+	 */
+	private File[] UniversalFile;
+	
+	/**
+	 * @return the universalFile
+	 */
+	public File[] getUniversalFile() {
+		return UniversalFile;
+	}
+
+	/**
+	 * @param universalFile the universalFile to set
+	 */
+	public void setUniversalFile(File[] universalFile) {
+		UniversalFile = universalFile;
+	}
+
+	/**
 	 * Function for shake in html.
 	 * 
 	 * This do an Iterator of the files on web path root.
@@ -97,34 +119,48 @@ public class FileIndexUploaded {
 		setCheckFIleIfImages( files );
 		setCheckFileIfVideos( files );
 
-		// select images div.
-		for (File it : getCheckFIleIfImages()) {
-			
-			boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
-										 || it.getName().endsWith(".png") 
-										 || it.getName().endsWith(".jpeg") 
-										 || it.getName().endsWith(".webp")
-									);
-					
-			if (!terminateWithImage) {
-				// make it in html page.
-				model.addAttribute("filesItImages", getCheckFIleIfImages());
+		{
+			// select images div.
+			for (File it : getCheckFIleIfImages()) {
+				
+				boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
+											 || it.getName().endsWith(".png") 
+											 || it.getName().endsWith(".jpeg") 
+											 || it.getName().endsWith(".webp")
+										);
+						
+				if (terminateWithImage) {
+					// make it in html page.
+					model.addAttribute("filesItImages", getCheckFIleIfImages());
+				}
+			}
+	
+			// select videos div.
+			for (File it : getCheckFileIfVideos()) {
+	
+				boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
+											||  it.getName().endsWith(".webm") 
+												);
+	
+				if (terminateWithVideo) {
+					// make it in html page.
+					model.addAttribute("filesItVideos", getCheckFileIfVideos());
+				}								
 			}
 		}
 
-		// select videos div.
-		for (File it : getCheckFileIfVideos()) {
-
-			boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
-										||  it.getName().endsWith(".webm") 
-											);
-			
-			if (!terminateWithVideo) {
-				// make it in html page.
-				model.addAttribute("filesItVideos", getCheckFileIfVideos());
-			}								
-		}
-
-		return files;
+		return null;
+	}
+	
+	/**
+	 * Create Directory on File System.
+	 * 
+	 * @param nameDir
+	 * 	Name of the channel.
+	 */
+	public void createDirectoryIfNotExist(String nameDir) {
+		File dir = new File(_ORIGINAL_LOCATION + "/" + nameDir);
+		boolean create = dir.mkdir();
+		if (create) return;
 	}
 }

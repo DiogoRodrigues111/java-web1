@@ -10,11 +10,6 @@
 </head>
 <body>
 	<form action="upload" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
-		<input name="file" type="file">
-		<input name="nameText" type="text" width=100 height=40>
-		<input type="submit" value="Enviar">
-=======
 		<div class="mb-3">
 			<h2 class="form-label img-center-user">Only single file to upload</h2>
 			<input name="file" class="form-control" type="file" id="formFileMultiple">
@@ -23,8 +18,11 @@
 			<span class="input-group-text" id="basic-addon1">File Name</span>
 			<input name="nameText" type="text" class="form-control" placeholder="Name of the file" aria-label="Username" aria-describedby="basic-addon1">
 		</div>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Channel Name</span>
+			<input name="channel" type="text" class="form-control" placeholder="Channel Name" aria-label="Username" aria-describedby="basic-addon1">
+		</div>
 		<input type="submit" class="btn btn-primary" value="Seeding">
->>>>>>> origin/dev-3.4.1
 	</form>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>

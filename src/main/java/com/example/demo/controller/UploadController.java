@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.upload.FileIndexUploaded;
 import com.example.demo.upload.FilesUpload;
 import com.example.demo.upload.UploadSequenceFiles;
 import com.example.demo.upload.progress.ProgressBarValues;
@@ -36,10 +37,15 @@ public class UploadController {
 	@RequestMapping(path = "/upload", method = RequestMethod.POST)
 	public String uploadFile(
 			  @RequestParam("file") MultipartFile[] file
-			, @RequestParam("nameText") String nameFile) {
+			, @RequestParam("nameText") String nameFile
+			, @RequestParam("channel")  String channelName ) {
 		
 		uploadFS = new FilesUpload();
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
+		
+		FileIndexUploaded fs = new FileIndexUploaded();
+		
+		fs.createDirectoryIfNotExist( channelName );
 		
 		for (MultipartFile fi : file) {
 			String extension = fi.getContentType()
