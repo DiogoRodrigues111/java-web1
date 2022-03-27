@@ -50,8 +50,6 @@ public class UploadController {
 		}
 		
 		return "redirect:/indexpage";
-<<<<<<< HEAD
-=======
 	}
 	
 	/**
@@ -84,7 +82,6 @@ public class UploadController {
 		progress.occurChanged(model);
 		
 		return "upload";
->>>>>>> origin/dev-3.4.1
 	}
 	*/
 	

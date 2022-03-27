@@ -29,7 +29,6 @@ public class FileIndexUploaded {
 		= "src/main/resources/static/uploaded/";
 
 	/**
-<<<<<<< HEAD
 	 * Getter and Setters Files 
 	 * 
 	 * @see {@link FileIndexUploaded}
@@ -74,8 +73,6 @@ public class FileIndexUploaded {
 	/**
 	 * Function for shake in html.
 	 * 
-=======
->>>>>>> origin/dev-3.4.1
 	 * This do an Iterator of the files on web path root.
 	 * 
 	 * Lists files on Server Folder.
@@ -90,7 +87,6 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the HTML.
 	 */
-<<<<<<< HEAD
 	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
 	public File[] UploadedValid(String pathValid, Model model) {
 
@@ -114,37 +110,6 @@ public class FileIndexUploaded {
 				// make it in html page.
 				model.addAttribute("filesItImages", getCheckFIleIfImages());
 			}
-=======
-	public String UploadedValid(String pathValid, Model model) {
-
-		File file = new File(pathValid);
-		File[] files = file.listFiles();
-
-		for (File it : files) {
-
-			boolean boolImg = (it.getPath().endsWith(".jpg") || it.getPath().endsWith(".png") || 
-				it.getPath().endsWith(".webp") || it.getPath().endsWith(".jpeg"));
-
-			if (boolImg) {
-				
-				// get all images, but not only last.
-				String _img = pathValid.replace(_ORIGINAL_LOCATION, "uploaded/" + it.getName());
-
-				// add attribute for HTML page.
-				model.addAttribute("images", _img);
-			}
-
-			boolean boolVid = (it.getPath().endsWith(".mp4") || it.getPath().endsWith(".webm"));
-
-			if (boolVid) {
-
-				// add attribute for HTML page.
-				model.addAttribute("videos",  pathValid.replace(_ORIGINAL_LOCATION, "uploaded/" + it.getName()));
-			}
-
-			// only check it for me.
-			System.out.println("Checking file is valid: " + it);
->>>>>>> origin/dev-3.4.1
 		}
 
 		// select videos div.
