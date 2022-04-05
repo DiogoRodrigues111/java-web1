@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.controller.login.StaticLogin;
 import com.example.demo.jpa.entity.User;
+import com.example.demo.jpa.services.UserService;
+import com.example.demo.jpa.services.UserServiceImpl;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SignIn {
-    
+public class SignIn {	
+	
     /**
 	 * Login page from HTML page.
 	 * 
@@ -19,21 +20,33 @@ public class SignIn {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(path = "/signin", method = RequestMethod.GET)
+	@RequestMapping(path = "/signin", method = RequestMethod.POST)
 	public String loginSignInPage(
-			  @RequestParam("nome")  String nome
-			, @RequestParam("email") String email
-			, User user)
+			  @RequestParam("nome_log")  String nome
+			, @RequestParam("email_log") String email
+			, User usr
+			, UserServiceImpl userService)
 	{
-		StaticLogin login = new StaticLogin();
-
-		if (login.userName.equals(nome) && login.email.equals(email)) {
-			return "redirect:/loginsuccess";
-		} else if (!login.userName.equals(nome) && !login.email.equals(email)) {
-			return "redirect:/failed";
+		System.out.println(nome);
+		System.out.println(email);
+		
+		usr.setUserName(nome);
+		usr.setEmail(email);
+		
+		System.out.println(usr.userName);
+		System.out.println(usr.email);
+		
+		if ((userService.fetchUserList().listIterator()) == usr) {
+			if ((usr.userName == nome) && (usr.email == email)) {
+				return "loginsuccess";
+			}
+		} else {
+			if (!(usr.userName == nome) && !(usr.email == email)) {
+				return "failed";
+			}
 		}
 		
-		return "signin";
+		return "indexpage";
 	}
 	
 	/* Controller pages below */
@@ -46,5 +59,27 @@ public class SignIn {
 	@RequestMapping("/signin")
 	public String signin() {
 		return "signin";
+	}
+	
+	/**
+	 * Load page in the case sign-in is failed.
+	 * 
+	 * @return
+	 * 	Failed to login.
+	 */
+	@RequestMapping("/failed")
+	public String failed() {
+		return "failed";
+	}
+	
+	/**
+	 * Load page of sign-in only success.
+	 * 
+	 * @return
+	 * 	successfully on login.
+	 */
+	@RequestMapping("/loginsuccess")
+	public String loginsuccess() {
+		return "loginsuccess";
 	}
 }

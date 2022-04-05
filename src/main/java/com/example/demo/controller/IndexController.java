@@ -18,7 +18,7 @@ import com.example.demo.jpa.services.UserService;
  */
 @Controller
 public class IndexController {
-
+	
 	@Autowired
 	private UserService userService;
 	
@@ -30,9 +30,8 @@ public class IndexController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(path = "/signin", method = RequestMethod.POST)
-	@GetMapping("/")
-	public String writeSignInParams(
+	@RequestMapping(path = "/", method = RequestMethod.POST)
+	public String registerUserSignIn(
 			  @RequestParam("nome")  String nome
 			, @RequestParam("email") String email
 			, User user)
@@ -45,6 +44,7 @@ public class IndexController {
 		return "signin";
 	}
 	
+	
 	/**
 	 * Index page of the HTML.
 	 *
@@ -54,11 +54,6 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index() {
 		return "index";
-	}
-	
-	@RequestMapping("/loginsuccess")
-	public String loginsuccess() {
-		return "loginsuccess";
 	}
 
 }
