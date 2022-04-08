@@ -27,24 +27,24 @@ public class SignIn {
 			, User usr
 			, UserServiceImpl userService)
 	{
-		System.out.println(nome);
-		System.out.println(email);
-		
-		usr.setUserName(nome);
-		usr.setEmail(email);
-		
-		System.out.println(usr.userName);
-		System.out.println(usr.email);
-		
-		if ((userService.fetchUserList().listIterator()) == usr) {
-			if ((usr.userName == nome) && (usr.email == email)) {
-				return "loginsuccess";
-			}
-		} else {
-			if (!(usr.userName == nome) && !(usr.email == email)) {
-				return "failed";
-			}
-		}
+//		System.out.println(nome);
+//		System.out.println(email);
+//		
+//		usr.setUserName(nome);
+//		usr.setEmail(email);
+//		
+//		System.out.println(usr.userName);
+//		System.out.println(usr.email);
+//		
+//		if ((userService.fetchUserList().listIterator()) == usr) {
+//			if ((usr.userName == nome) && (usr.email == email)) {
+//				return "loginsuccess";
+//			}
+//		} else {
+//			if (!(usr.userName == nome) && !(usr.email == email)) {
+//				return "failed";
+//			}
+//		}
 		
 		return "indexpage";
 	}

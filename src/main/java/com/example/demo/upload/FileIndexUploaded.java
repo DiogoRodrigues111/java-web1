@@ -1,9 +1,6 @@
 package com.example.demo.upload;
 
 import java.io.File;
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -110,46 +107,37 @@ public class FileIndexUploaded {
 	 * 	IndexPage of the HTML.
 	 */
 	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
-	public File[] UploadedValid(String pathValid, Model model) {
+	public void UploadedValid(String pathValid, Model model) {
 
 		File file = new File(pathValid);
 		File[] files = file.listFiles();
 		
 		// check all files for iterator found all.
-		setCheckFIleIfImages( files );
-		setCheckFileIfVideos( files );
+		setFiles( files );
 
-		{
-			// select images div.
-			for (File it : getCheckFIleIfImages()) {
-				
-				boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
-											 || it.getName().endsWith(".png") 
-											 || it.getName().endsWith(".jpeg") 
-											 || it.getName().endsWith(".webp")
-										);
-						
-				if (terminateWithImage) {
-					// make it in html page.
-					model.addAttribute("filesItImages", getCheckFIleIfImages());
-				}
-			}
-	
-			// select videos div.
-			for (File it : getCheckFileIfVideos()) {
-	
-				boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
+		// select images DIV.
+		for (File it : getFiles()) {
+			
+			boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
+										 || it.getName().endsWith(".png") 
+										 || it.getName().endsWith(".jpeg") 
+										 || it.getName().endsWith(".webp")
+										) == true;
+			
+			boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
 											||  it.getName().endsWith(".webm") 
-												);
-	
-				if (terminateWithVideo) {
-					// make it in html page.
-					model.addAttribute("filesItVideos", getCheckFileIfVideos());
-				}								
+										) == true;
+					
+			if ( terminateWithImage ) {
+				// images attr.
+				model.addAttribute("filesItImages", getFiles());
+			}
+			
+			if ( terminateWithVideo ) {
+				// videos attr.
+				model.addAttribute("filesItVideos", getFiles());
 			}
 		}
-
-		return null;
 	}
 	
 	/**
@@ -159,8 +147,8 @@ public class FileIndexUploaded {
 	 * 	Name of the channel.
 	 */
 	public void createDirectoryIfNotExist(String nameDir) {
-		File dir = new File(_ORIGINAL_LOCATION + "/" + nameDir);
-		boolean create = dir.mkdir();
-		if (create) return;
+		File dir = new File(_ORIGINAL_LOCATION + nameDir);
+		boolean create = dir.mkdirs();
+		if ( create ) return /* SUCCESS */;
 	}
 }

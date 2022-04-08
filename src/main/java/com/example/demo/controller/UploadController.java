@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.io.FileNotFoundException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +54,12 @@ public class UploadController {
 				.replace("/", "").replace("image", ".").replace("video", ".");
 			
 			uploadFiles = new UploadSequenceFiles(uploadFS.getPathDirectory(), fi);
-			uploadFiles.createFileSystem(uploadFS.getPathDirectory(), ( nameFile + extension ));
+			
+			if (file.length > 1) {
+				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), channelName + "/" + fi.getOriginalFilename());
+			} else {
+				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), channelName + "/" + ( nameFile + extension ));
+			}
 		}
 		
 		return "redirect:/indexpage";
