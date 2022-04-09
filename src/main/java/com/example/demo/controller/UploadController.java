@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.io.FileNotFoundException;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,18 +9,34 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.upload.FileIndexUploaded;
 import com.example.demo.upload.FilesUpload;
 import com.example.demo.upload.UploadSequenceFiles;
-import com.example.demo.upload.progress.ProgressBarValues;
-//import com.example.demo.upload.progress.values.ProgressValuesForHtml;
 
 @Controller
 public class UploadController {
 
 	UploadSequenceFiles uploadFiles;
 	FilesUpload uploadFS;
+	FileIndexUploaded uploadList;
 	
+	/** Location WWW path. */
 	public static final String _LOCATION_FILE_FOR_UPLOAD
 		= "src/main/resources/static/uploaded/";
+
+	public String ChannelFriends;
 	
+	/**
+	 * @return the channelFriends
+	 */
+	public String getChannelFriends() {
+		return ChannelFriends;
+	}
+
+	/**
+	 * @param channelFriends the channelFriends to set
+	 */
+	public void setChannelFriends(String channelFriends) {
+		ChannelFriends = channelFriends;
+	}
+
 	/**
 	 * Up file to server.
 	 * 
@@ -46,6 +59,8 @@ public class UploadController {
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
 		
 		FileIndexUploaded fs = new FileIndexUploaded();
+		
+		setChannelFriends( channelName );
 		
 		fs.createDirectoryIfNotExist( channelName );
 		

@@ -4,8 +4,8 @@ import java.io.File;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.example.demo.controller.UploadController;
 
 import lombok.Builder;
 import lombok.Data;
@@ -42,59 +42,15 @@ public class FileIndexUploaded {
 	public void setFiles(File[] files) {
 		Files = files;
 	}
-
-	/**
-	 * Getter and Setters Files 
-	 * 
-	 * @see {@link FileIndexUploaded}
-	 */
-	public File[] CheckFileIfVideos;
 	
-
-	public File[] getCheckFileIfVideos() {
-		return CheckFileIfVideos;
-	}
-
-	public void setCheckFileIfVideos(File[] checkFileIfVideos) {
-		CheckFileIfVideos = checkFileIfVideos;
-	}
-
-	public File[] CheckFIleIfImages;
-	
-
-	public File[] getCheckFIleIfImages() {
-		return CheckFIleIfImages;
-	}
-
-	public void setCheckFIleIfImages(File[] checkFIleIfImages) {
-		CheckFIleIfImages = checkFIleIfImages;
-	}
-
-	/**
-	 * Universal iterator
-	 */
-	private File[] UniversalFile;
-	
-	/**
-	 * @return the universalFile
-	 */
-	public File[] getUniversalFile() {
-		return UniversalFile;
-	}
-
-	/**
-	 * @param universalFile the universalFile to set
-	 */
-	public void setUniversalFile(File[] universalFile) {
-		UniversalFile = universalFile;
-	}
-
 	/**
 	 * Function for shake in html.
 	 * 
 	 * This do an Iterator of the files on web path root.
 	 * 
 	 * Lists files on Server Folder.
+	 * 
+	 * *** REMOVED support to images. ***
 	 * 
 	 * @param pathValid
 	 * 	web path root.
@@ -106,37 +62,22 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the HTML.
 	 */
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
-	public void UploadedValid(String pathValid, Model model) {
+	public void UploadedValid(String pathValid, Model html) {
 
-		File file = new File(pathValid);
+		UploadController friends = new UploadController(); // bad indeed!!!!
+		
+		File file = new File(pathValid + friends.getChannelFriends());
 		File[] files = file.listFiles();
 		
-		// check all files for iterator found all.
+		if (friends.getChannelFriends() == null)
+			System.out.println("ERR: Failed friends is null.");
+
 		setFiles( files );
 
-		// select images DIV.
 		for (File it : getFiles()) {
-			
-			boolean terminateWithImage = (  it.getName().endsWith(".jpg") 
-										 || it.getName().endsWith(".png") 
-										 || it.getName().endsWith(".jpeg") 
-										 || it.getName().endsWith(".webp")
-										) == true;
-			
-			boolean terminateWithVideo = (  it.getName().endsWith(".mp4") 
-											||  it.getName().endsWith(".webm") 
-										) == true;
-					
-			if ( terminateWithImage ) {
-				// images attr.
-				model.addAttribute("filesItImages", getFiles());
-			}
-			
-			if ( terminateWithVideo ) {
-				// videos attr.
-				model.addAttribute("filesItVideos", getFiles());
-			}
+			html.addAttribute("videos", getFiles());
+			// check its for me.
+			System.out.println("TAG: Info - " + it.getName());
 		}
 	}
 	

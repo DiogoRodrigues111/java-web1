@@ -19,9 +19,22 @@ public class IndexPageController {
 	FileLoaded loaded;
 	FileIndexUploaded uploadList;
 	
+	/** Location WWW path. */
 	public static final String _LOCATION_FILE_FOR_UPLOAD
 		= "src/main/resources/static/uploaded/";
 	
+	/**
+	 * ****** Dont's use this *******
+	 * 
+	 * @param fi
+	 * 	Files iterator.
+	 * 
+	 * @param dir
+	 * 	Directory returns.
+	 * 
+	 * @return
+	 * 	List file of the iterator.
+	 */
 	@DontUse
 	public MultipartFile doingMultipart(@RequestParam("video_found") MultipartFile fi, String dir) {
 		listFiles = new ListFiles(dir, fi);
@@ -29,15 +42,28 @@ public class IndexPageController {
 		return listFiles.getFileUploaded();
 	}
 	
+	/**
+	 * Pushing to HTML page.
+	 */
 	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
-	public String fileUploadedList(Model model) {
+	public String fileUploadedList( Model html ) {
+		UploadController friends = new UploadController();	// bad indeed!!!!
 		
 		uploadList = new FileIndexUploaded();
-		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD, model);
+		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD + friends.getChannelFriends(), html);
+		
+		if (friends.getChannelFriends() == null)
+			System.out.println("ERR: Failed friends is null.");
 		
 		return "indexpage";
 	}
 	
+	/**
+	 * Index HTML page.
+	 * 
+	 * @return
+	 * 	Self page.
+	 */
 	@RequestMapping("/indexpage")
 	public String indexPage() {
 		return "indexpage";

@@ -6,15 +6,10 @@
 		<link rel="stylesheet" type="text/css" href="site.css" media="screen">
 	</head>
 	<body>
-		<div th:each="filesImages : ${filesItImages}">
-			<a th:href="'uploaded/'+*{filesImages.name}"> 
-				<img class="rounded-image-indexpage" width="200" height="200" th:src="'uploaded/'+*{filesImages.name}">
-			</a>
-		</div>
-		<div th:each="filesVideos : ${filesItVideos}">
-			<a th:href="'uploaded/Tweark/'+*{filesVideos.name}"> 
+		<div th:each="filesVideos : ${videos}">
+			<a th:href="'uploaded/' + *{filesVideos.name}"> 
 				<video class="rounded-image-indexpage" width="200" height="200" controls loop>
-					<source th:src="'uploaded/Tweark/'+*{filesVideos.name}" type="video/mp4">
+					<source th:src="'uploaded/' + *{filesVideos.name}" type="video/mp4">
 				</video>
 			</a>
 		</div>
