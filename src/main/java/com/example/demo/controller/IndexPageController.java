@@ -45,12 +45,12 @@ public class IndexPageController {
 	/**
 	 * Pushing to HTML page.
 	 */
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
+	@RequestMapping(path = "/indexpage", method = RequestMethod.GET)
 	public String fileUploadedList( Model html ) {
 		UploadController friends = new UploadController();	// bad indeed!!!!
 		
 		uploadList = new FileIndexUploaded();
-		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD + friends.getChannelFriends(), html);
+		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD, html);
 		
 		if (friends.getChannelFriends() == null)
 			System.out.println("ERR: Failed friends is null.");
