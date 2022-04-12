@@ -4,6 +4,11 @@ import java.io.File;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.UploadController;
 
@@ -28,6 +33,8 @@ public class FileIndexUploaded {
 	public static final String _ORIGINAL_LOCATION
 		= "src/main/resources/static/uploaded/";
 
+	FilesUpload uploadFS;
+	
 	/**
 	 * Getter and Setters Files 
 	 * 
@@ -53,7 +60,7 @@ public class FileIndexUploaded {
 	 * *** REMOVED support to images. ***
 	 * 
 	 * @param pathValid
-	 * 	web path root.
+	 * 	web path root, not necessary put '/' slash.
 	 * 
 	 * @param model
 	 * 	@see 	{@link Model}
@@ -62,23 +69,26 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the HTML.
 	 */
-	public void UploadedValid(String pathValid, Model html) {
-
-		UploadController friends = new UploadController(); // bad indeed!!!!
+	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
+	public File[] UploadedValid(Model html) {
 		
-		File file = new File(pathValid + friends.getChannelFriends());
+		uploadFS = new FilesUpload();
+		uploadFS.setPathDirectory(_ORIGINAL_LOCATION);
+		
+		File file = new File(uploadFS.getPathDirectory());
 		File[] files = file.listFiles();
-		
-		if (friends.getChannelFriends() == null)
-			System.out.println("ERR: Failed friends is null.");
 
 		setFiles( files );
 
 		for (File it : getFiles()) {
-			html.addAttribute("videos", getFiles());
+			
+			html.addAttribute("videos", it);
+			
 			// check its for me.
-			System.out.println("TAG: Info - " + it.getName());
+			System.out.println("TAG: Info - " + it);
 		}
+		
+		return files;
 	}
 	
 	/**

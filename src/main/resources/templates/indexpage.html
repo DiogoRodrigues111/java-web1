@@ -13,5 +13,11 @@
 				</video>
 			</a>
 		</div>
+		
+		<div th:each="files : ${videos}">
+			<video class="rounded-image-indexpage" width="200" height="200" controls loop>
+				<source th:src="'uploaded/Tweark/' *{files.name}" type="video/mp4">
+			</video>
+		</div>
 	</body>
 </html>
