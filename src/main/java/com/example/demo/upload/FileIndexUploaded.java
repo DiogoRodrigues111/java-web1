@@ -33,8 +33,6 @@ public class FileIndexUploaded {
 	public static final String _ORIGINAL_LOCATION
 		= "src/main/resources/static/uploaded/";
 
-	FilesUpload uploadFS;
-	
 	/**
 	 * Getter and Setters Files 
 	 * 
@@ -69,24 +67,21 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the HTML.
 	 */
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
-	public File[] UploadedValid(Model html) {
+	public File[] UploadedValid(String pathValid, String channel, Model html) {
 		
-		uploadFS = new FilesUpload();
-		uploadFS.setPathDirectory(_ORIGINAL_LOCATION);
-		
-		File file = new File(uploadFS.getPathDirectory());
+		File file = new File(pathValid + channel);
 		File[] files = file.listFiles();
 
 		setFiles( files );
 
 		for (File it : getFiles()) {
-			
 			html.addAttribute("videos", it);
-			
 			// check its for me.
 			System.out.println("TAG: Info - " + it);
 		}
+		
+		// check its for me.
+		System.out.println("TAG: Info - " + files);
 		
 		return files;
 	}

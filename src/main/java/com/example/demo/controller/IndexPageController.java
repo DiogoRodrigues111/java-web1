@@ -21,6 +21,7 @@ public class IndexPageController {
 	ListFiles listFiles;
 	FileLoaded loaded;
 	FileIndexUploaded uploadList;
+	UploadController.UploadNonController nonController;
 	
 	/** Location WWW path. */
 	public static final String _LOCATION_FILE_FOR_UPLOAD
@@ -50,13 +51,15 @@ public class IndexPageController {
 	/**
 	 * Pushing to HTML page.
 	 */
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
-	public String fileUploadedList( Model html ) {
+	public String fileUploadedList( String channel, Model html ) {
+		
+		if (nonController.getChannelFriends() == null)
+			System.out.println("WARNING: nonController.getChannelFriends is null");
 		
 		uploadList = new FileIndexUploaded();
-		uploadList.UploadedValid(html);
+		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD, nonController.getChannelFriends(), html);
 		
-		return "indexpage";
+		return _T("indexpage");
 	}
 	
 	/**
