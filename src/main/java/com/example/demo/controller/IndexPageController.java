@@ -2,12 +2,15 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.annotation.DontUse;
+import com.example.demo.controller.UploadController.UploadNonController;
 import com.example.demo.html.list.FileLoaded;
 import com.example.demo.html.list.ListFiles;
 import com.example.demo.upload.FileIndexUploaded;
@@ -18,6 +21,7 @@ public class IndexPageController {
 	ListFiles listFiles;
 	FileLoaded loaded;
 	FileIndexUploaded uploadList;
+	UploadController.UploadNonController nonController;
 	
 	/** Location WWW path. */
 	public static final String _LOCATION_FILE_FOR_UPLOAD
@@ -42,20 +46,18 @@ public class IndexPageController {
 		return listFiles.getFileUploaded();
 	}
 	
+	public String RET_PATH(String obj) { return obj; }
+	
 	/**
 	 * Pushing to HTML page.
 	 */
-	@RequestMapping(path = "/indexpage", method = RequestMethod.POST)
+	@RequestMapping(path = "/indexpage", method = RequestMethod.GET)
 	public String fileUploadedList( Model html ) {
-		UploadController friends = new UploadController();	// bad indeed!!!!
 		
 		uploadList = new FileIndexUploaded();
-		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD + friends.getChannelFriends(), html);
+		uploadList.UploadedValid(_LOCATION_FILE_FOR_UPLOAD, html);
 		
-		if (friends.getChannelFriends() == null)
-			System.out.println("ERR: Failed friends is null.");
-		
-		return "indexpage";
+		return RET_PATH("indexpage");
 	}
 	
 	/**

@@ -4,6 +4,11 @@ import java.io.File;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.UploadController;
 
@@ -53,7 +58,7 @@ public class FileIndexUploaded {
 	 * *** REMOVED support to images. ***
 	 * 
 	 * @param pathValid
-	 * 	web path root.
+	 * 	web path root, not necessary put '/' slash.
 	 * 
 	 * @param model
 	 * 	@see 	{@link Model}
@@ -63,22 +68,13 @@ public class FileIndexUploaded {
 	 * 	IndexPage of the HTML.
 	 */
 	public void UploadedValid(String pathValid, Model html) {
-
-		UploadController friends = new UploadController(); // bad indeed!!!!
 		
-		File file = new File(pathValid + friends.getChannelFriends());
+		File file = new File(pathValid);
 		File[] files = file.listFiles();
-		
-		if (friends.getChannelFriends() == null)
-			System.out.println("ERR: Failed friends is null.");
 
 		setFiles( files );
 
-		for (File it : getFiles()) {
-			html.addAttribute("videos", getFiles());
-			// check its for me.
-			System.out.println("TAG: Info - " + it.getName());
-		}
+		html.addAttribute("videos".replace("[]", ""), getFiles());
 	}
 	
 	/**
@@ -87,8 +83,8 @@ public class FileIndexUploaded {
 	 * @param nameDir
 	 * 	Name of the channel.
 	 */
-	public void createDirectoryIfNotExist(String nameDir) {
-		File dir = new File(_ORIGINAL_LOCATION + nameDir);
+	public void createDirectoryIfNotExist() {
+		File dir = new File( _ORIGINAL_LOCATION );
 		boolean create = dir.mkdirs();
 		if ( create ) return /* SUCCESS */;
 	}

@@ -13,29 +13,38 @@ import com.example.demo.upload.UploadSequenceFiles;
 @Controller
 public class UploadController {
 
+	public class UploadNonController {
+		
+		public String ChannelFriends;
+		
+		/**
+		 * @return the channelFriends
+		 */
+		public String getChannelFriends() {
+			return ChannelFriends;
+		}
+
+		/**
+		 * @param channelFriends the channelFriends to set
+		 */
+		public void setChannelFriends(String channelFriends) {
+			ChannelFriends = channelFriends;
+		}
+		
+		public UploadNonController(String channel) {
+			setChannelFriends(channel);
+		}
+	}
+
+	
 	UploadSequenceFiles uploadFiles;
 	FilesUpload uploadFS;
 	FileIndexUploaded uploadList;
+	UploadNonController nonController;
 	
 	/** Location WWW path. */
 	public static final String _LOCATION_FILE_FOR_UPLOAD
 		= "src/main/resources/static/uploaded/";
-
-	public String ChannelFriends;
-	
-	/**
-	 * @return the channelFriends
-	 */
-	public String getChannelFriends() {
-		return ChannelFriends;
-	}
-
-	/**
-	 * @param channelFriends the channelFriends to set
-	 */
-	public void setChannelFriends(String channelFriends) {
-		ChannelFriends = channelFriends;
-	}
 
 	/**
 	 * Up file to server.
@@ -53,16 +62,17 @@ public class UploadController {
 	public String uploadFile(
 			  @RequestParam("file") MultipartFile[] file
 			, @RequestParam("nameText") String nameFile
-			, @RequestParam("channel")  String channelName ) {
+			 /*, @RequestParam("channel")  String channelName*/ ) {
 		
 		uploadFS = new FilesUpload();
 		uploadFS.setPathDirectory(_LOCATION_FILE_FOR_UPLOAD);
 		
 		FileIndexUploaded fs = new FileIndexUploaded();
 		
-		setChannelFriends( channelName );
+		//nonController = new UploadNonController( channelName );
+		//nonController.setChannelFriends( channelName );
 		
-		fs.createDirectoryIfNotExist( channelName );
+		fs.createDirectoryIfNotExist();
 		
 		for (MultipartFile fi : file) {
 			String extension = fi.getContentType()
@@ -71,9 +81,9 @@ public class UploadController {
 			uploadFiles = new UploadSequenceFiles(uploadFS.getPathDirectory(), fi);
 			
 			if (file.length > 1) {
-				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), channelName + "/" + fi.getOriginalFilename());
+				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), /* channelName + "/" */ fi.getOriginalFilename());
 			} else {
-				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), channelName + "/" + ( nameFile + extension ));
+				uploadFiles.createFileSystem(uploadFS.getPathDirectory(), /*channelName + "/" + */ ( nameFile + extension ));
 			}
 		}
 		

@@ -6,12 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="site.css" media="screen">
 	</head>
 	<body>
-		<div th:each="filesVideos : ${videos}">
-			<a th:href="'uploaded/' + *{filesVideos.name}"> 
+		<div th:each="files : ${videos}">
+			<a th:href="'uploaded/' + *{files.name}"> 
 				<video class="rounded-image-indexpage" width="200" height="200" controls loop>
-					<source th:src="'uploaded/' + *{filesVideos.name}" type="video/mp4">
+					<source th:src="'uploaded/' + *{files.name}" type="video/mp4">
 				</video>
+				<label th:utext="*{files.name}"></label>
 			</a>
 		</div>
 	</body>
-</html>
+</html>	
