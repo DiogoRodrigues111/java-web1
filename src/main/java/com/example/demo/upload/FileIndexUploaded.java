@@ -67,7 +67,7 @@ public class FileIndexUploaded {
 	 * @return
 	 * 	IndexPage of the HTML.
 	 */
-	public void UploadedValid(String pathValid, Model html) {
+	public File[] UploadedValid(String pathValid, Model html) {
 		
 		File file = new File(pathValid);
 		File[] files = file.listFiles();
@@ -75,6 +75,8 @@ public class FileIndexUploaded {
 		setFiles( files );
 
 		html.addAttribute("videos".replace("[]", ""), getFiles());
+
+		return files;
 	}
 	
 	/**
