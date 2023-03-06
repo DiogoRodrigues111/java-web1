@@ -4,13 +4,6 @@ import java.io.File;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.example.demo.controller.UploadController;
 
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +25,12 @@ public class FileIndexUploaded {
 	// Original location Server file path.
 	public static final String _ORIGINAL_LOCATION
 		= "src/main/resources/static/uploaded/";
+
+	public FileIndexUploaded() {}
+
+	public FileIndexUploaded(File[] files) {
+
+	}
 
 	/**
 	 * Getter and Setters Files 

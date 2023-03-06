@@ -36,4 +36,9 @@ public interface UserService {
      * @param id
      */
     void deleteUsrByIdData(Long id);
+
+    /**
+     * Check if user exist
+     */
+    boolean checkIfUserExists(String usr);
 }

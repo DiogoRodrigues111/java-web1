@@ -5,6 +5,8 @@ import com.example.demo.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +15,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private EntityManager sqlUserManager;
 
     @Override
     public User saveUsrData(User user) {
@@ -42,5 +46,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUsrByIdData(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean checkIfUserExists(String usr)
+    {
+        final String SQL_QUERY_FIND_USR = "SELECT COUNT(*) FROM pg_user WHERE userName =" + usr;
+
+        Query query = sqlUserManager.createNativeQuery(SQL_QUERY_FIND_USR);
+        query.setParameter(1, usr);
+
+        int count = ((Number)query.getSingleResult()).intValue();
+
+        return count > 0;   // ASSUME SUCCESS, ELSE RETURNS FALSE
     }
 }
