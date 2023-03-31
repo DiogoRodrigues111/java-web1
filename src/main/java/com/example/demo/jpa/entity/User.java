@@ -12,11 +12,11 @@ import javax.persistence.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Entity
 public class User {
 
     @Id

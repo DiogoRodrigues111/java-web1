@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exceptions.Exceptions;
 import com.example.demo.jpa.entity.User;
 import com.example.demo.jpa.services.UserServiceImpl;
 
@@ -32,18 +33,23 @@ public class SignIn {
 		usr.setUserName(nome);
 		usr.setEmail(email);
 		
+		if (!userService.checkIfUserExists(email)) {
+			System.out.println("Failed to find Email from user. Please check it.");
+			throw Exceptions.FAILED_LOGIN_EXCEPTION;
+		}
+
 		System.out.println(usr.userName);
 		System.out.println(usr.email);
 		
-		if ((userService.fetchUserList().listIterator()) == usr) {
-			if ((usr.userName == nome) && (usr.email == email)) {
-				return "loginsuccess";
-			}
-		} else {
-			if (!(usr.userName == nome) && !(usr.email == email)) {
-				return "failed";
-			}
-		}
+		//if ((userService.fetchUserList().listIterator()) == usr) {
+		//	if ((usr.userName == nome) && (usr.email == email)) {
+		//		return "loginsuccess";
+		//	}
+		//} else {
+		//	if (!(usr.userName == nome) && !(usr.email == email)) {
+		//		return "failed";
+		//	}
+		//}
 		
 		return "indexpage";
 	}

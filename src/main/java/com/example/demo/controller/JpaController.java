@@ -3,14 +3,16 @@ package com.example.demo.controller;
 import com.example.demo.jpa.entity.User;
 import com.example.demo.jpa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class JpaController {
 
-    @Autowired
+    @Autowired(required = false)
     private UserService userService;
 
     /**

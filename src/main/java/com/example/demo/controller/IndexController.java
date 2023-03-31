@@ -19,7 +19,7 @@ import com.example.demo.jpa.services.UserService;
 @Controller
 public class IndexController {
 	
-	@Autowired
+	//@Autowired(required = false)
 	private UserService userService;
 	
 	/**

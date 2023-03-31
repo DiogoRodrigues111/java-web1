@@ -18,10 +18,9 @@ public class ClientConnect {
 		catch (MongoException mongo_ex) {
 			mongo_ex.printStackTrace();
 		}
-		/*
 		finally {
 			if (client == null)
 				client.close();
-		} */
+		}
 	}
 }

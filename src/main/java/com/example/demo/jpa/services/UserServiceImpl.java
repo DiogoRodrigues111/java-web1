@@ -1,8 +1,10 @@
 package com.example.demo.jpa.services;
 
+import com.example.demo.exceptions.Exceptions;
 import com.example.demo.jpa.entity.User;
 import com.example.demo.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -10,10 +12,9 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
-@Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Autowired(required = false)
     private UserRepository userRepository;
 
     private EntityManager sqlUserManager;
@@ -55,6 +56,8 @@ public class UserServiceImpl implements UserService {
 
         Query query = sqlUserManager.createNativeQuery(SQL_QUERY_FIND_USR);
         query.setParameter(1, usr);
+
+        if (query == Exceptions.FAILED_QUERY_EXCEPTION) throw Exceptions.FAILED_QUERY_EXCEPTION;
 
         int count = ((Number)query.getSingleResult()).intValue();
 
