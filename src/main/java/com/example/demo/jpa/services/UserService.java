@@ -4,12 +4,6 @@ import com.example.demo.jpa.entity.User;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
-
-//@Service
-//@Configuration
 public interface UserService {
 
     /**

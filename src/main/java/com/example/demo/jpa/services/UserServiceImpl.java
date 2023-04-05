@@ -4,7 +4,7 @@ import com.example.demo.exceptions.Exceptions;
 import com.example.demo.jpa.entity.User;
 import com.example.demo.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -12,15 +12,17 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
+@Service
+@Configuration
 public class UserServiceImpl implements UserService {
 
-    @Autowired(required = false)
+    @Autowired(required = true)
     private UserRepository userRepository;
 
     private EntityManager sqlUserManager;
 
     @Override
-    public User saveUsrData(User user) {
+    public User saveUsrData(final User user) {
         return userRepository.save(user);
     }
 
