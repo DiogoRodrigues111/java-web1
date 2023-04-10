@@ -1,0 +1,15 @@
+
+// Login First
+sudo -u postgres psql
+
+
+// Seconds Create database
+CREATE DATABASE <db_name>;
+
+
+// Third Create User
+CREATE USER <user> WITH ENCRYPTED PASSWORD '<password>';
+
+
+// GRANT PERMISSION
+GRANT ALL PRIVILEGES ON DATABASE <db_name> TO <user> WITH GRANT OPTION;
