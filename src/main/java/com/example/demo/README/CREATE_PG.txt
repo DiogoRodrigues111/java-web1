@@ -3,8 +3,14 @@
 sudo -u postgres psql
 
 
+// On Opensuse
+sudo su postgres
+// OpenSuSe
+psql
+
 // Seconds Create database
-CREATE DATABASE <db_name>;
+
+CREATE DATABASE <dbname>;
 
 
 // Third Create User
